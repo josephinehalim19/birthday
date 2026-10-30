@@ -721,6 +721,7 @@ Phina ♡`
         const footer = document.getElementById("footer");
 
         function isDayUnlocked(day) {
+            if(TEST_MODE) return true;
             const parts = new Intl.DateTimeFormat("en-US", {
                 timeZone: "America/Chicago",
                 year: "numeric",
