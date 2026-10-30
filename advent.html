@@ -712,7 +712,7 @@ Phina ♡`
 
         // TEST MODE: all doors are available while we're testing.
         // Change this to false before publishing if you want date restrictions.
-        const TEST_MODE = true;
+        const TEST_MODE = false;
 
         const calendar = document.getElementById("calendar");
         const calendarSection = document.getElementById("calendarSection");
@@ -721,7 +721,6 @@ Phina ♡`
         const footer = document.getElementById("footer");
 
         function isDayUnlocked(day) {
-            if(TEST_MODE) return true;
             const parts = new Intl.DateTimeFormat("en-US", {
                 timeZone: "America/Chicago",
                 year: "numeric",
