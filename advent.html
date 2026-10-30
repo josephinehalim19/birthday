@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>28 Days of You ♡</title>
+
+    <style>
+         :root {
+            --green: #234735;
+            --green-light: #d8e1d2;
+            --cream: #f4f2e8;
+            --paper: #fffdf7;
+            --gold: #b99b62;
+            --rose: #9b6e68;
+            --ink: #26372d;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            background: var(--cream);
+            color: var(--ink);
+            font-family: Georgia, "Times New Roman", serif;
+        }
+        
+        button {
+            font: inherit;
+            cursor: pointer;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        header {
+            text-align: center;
+            padding: 75px 20px 35px;
+            background: radial-gradient(ellipse at top, #fffdf7, var(--cream));
+        }
+        
+        .eyebrow {
+            color: var(--green);
+            font: 11px Arial, sans-serif;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+        
+        h1 {
+            font-size: clamp(42px, 8vw, 76px);
+            font-weight: normal;
+            margin: 20px 0;
+            line-height: 1.05;
+        }
+        
+        .italic {
+            color: var(--green);
+            font-style: italic;
+        }
+        
+        .intro {
+            max-width: 500px;
+            margin: auto;
+            line-height: 1.8;
+            font-size: 16px;
+            color: #58665a;
+        }
+        
+        .calendar-section {
+            max-width: 1050px;
+            margin: auto;
+            padding: 45px 22px 80px;
+        }
+        
+        .section-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        
+        .section-heading h2 {
+            font-size: 38px;
+            font-weight: normal;
+            margin: 12px 0;
+        }
+        
+        .section-heading p {
+            line-height: 1.7;
+            color: #667267;
+        }
+        
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        
+        .door {
+            min-height: 165px;
+            border: 1px solid #c8d2c3;
+            border-radius: 10px;
+            background: var(--paper);
+            color: var(--ink);
+            padding: 18px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: .25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .door:not(:disabled):hover {
+            transform: translateY(-5px);
+            border-color: var(--green);
+            box-shadow: 0 8px 20px #23473518;
+        }
+        
+        .door:disabled {
+            opacity: .58;
+            cursor: not-allowed;
+        }
+        
+        .door.opened {
+            background: #e8ede3;
+            border-color: #9cad99;
+        }
+        
+        .door.opened::after {
+            content: "♡";
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            color: var(--green);
+        }
+        
+        .number {
+            color: var(--green);
+            font: 10px Arial, sans-serif;
+            letter-spacing: 2px;
+        }
+        
+        .label {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .envelope {
+            width: 58px;
+            height: 41px;
+            position: relative;
+            display: block;
+            background: #e8dfc9;
+            border: 1px solid #b9aa8d;
+            border-radius: 3px;
+            box-shadow: 0 4px 8px #23473520;
+            perspective: 300px;
+            transition: transform .3s ease;
+        }
+        
+        .envelope::before,
+        .envelope::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 36px;
+            height: 38px;
+            border-bottom: 1px solid #b9aa8d;
+            z-index: 1;
+        }
+        
+        .envelope::before {
+            left: 0;
+            background: linear-gradient( 135deg, transparent 49%, #c9bda5 50%, transparent 52%);
+        }
+        
+        .envelope::after {
+            right: 0;
+            background: linear-gradient( 225deg, transparent 49%, #c9bda5 50%, transparent 52%);
+        }
+        
+        .seal {
+            position: absolute;
+            z-index: 3;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: var(--rose);
+            color: white;
+            font-size: 12px;
+            box-shadow: 0 2px 4px #0003;
+        }
+        
+        .door:not(:disabled):hover .envelope {
+            transform: translateY(-3px) rotate(-4deg);
+        }
+        
+        .door.opening {
+            pointer-events: none;
+        }
+        
+        .door.opening .envelope {
+            animation: envelopeOpen .65s ease forwards;
+        }
+        
+        .door.opening .seal {
+            animation: sealRelease .35s .1s ease forwards;
+        }
+        
+        @keyframes envelopeOpen {
+            0% {
+                transform: scale(1) rotate(0);
+            }
+            35% {
+                transform: scale(1.2) rotate(-5deg);
+            }
+            100% {
+                transform: scale(1.35) rotate(3deg);
+                opacity: .25;
+            }
+        }
+        
+        @keyframes sealRelease {
+            to {
+                transform: translate(-50%, -90%) scale(1.7);
+                opacity: 0;
+            }
+        }
+        
+        .final-door {
+            grid-column: 1 / -1;
+            min-height: 125px;
+            flex-direction: row;
+            gap: 20px;
+            background: var(--green);
+            color: #fffdf7;
+            border-color: var(--green);
+        }
+        
+        .final-door .number {
+            color: #e8dfc9;
+        }
+        
+        .final-door .label {
+            font-size: 17px;
+        }
+        
+        .final-door:disabled {
+            opacity: .65;
+        }
+        
+        .letter-page {
+            min-height: 100vh;
+            padding: 35px 18px;
+            display: grid;
+            place-items: center;
+            background: radial-gradient(ellipse at top, #fffdf7, var(--cream));
+            animation: pageArrive .6s ease both;
+        }
+        
+        @keyframes pageArrive {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .letter-card {
+            width: min(650px, 100%);
+            padding: clamp(35px, 7vw, 65px);
+            background: var(--paper);
+            border: 1px solid #d5ddcf;
+            outline: 1px solid #e5e8dc;
+            outline-offset: -10px;
+            box-shadow: 0 18px 55px #23473518;
+            text-align: center;
+            position: relative;
+        }
+        
+        .letter-card::before,
+        .letter-card::after {
+            content: "♡";
+            position: absolute;
+            color: #9aaf9a;
+            font-size: 25px;
+        }
+        
+        .letter-card::before {
+            top: 17px;
+            left: 22px;
+        }
+        
+        .letter-card::after {
+            bottom: 17px;
+            right: 22px;
+        }
+        
+        .letter-heart {
+            color: var(--rose);
+            font-size: 27px;
+            margin-bottom: 20px;
+        }
+        
+        .letter-card h2 {
+            font-size: clamp(30px, 6vw, 44px);
+            font-weight: normal;
+            margin: 18px 0 30px;
+        }
+        
+        .letter-body {
+            white-space: pre-line;
+            text-align: left;
+            line-height: 2;
+            font-size: 17px;
+            max-width: 490px;
+            margin: 0 auto 35px;
+        }
+        
+        .back-button {
+            padding: 13px 25px;
+            border: 1px solid var(--green);
+            border-radius: 30px;
+            color: var(--green);
+            background: transparent;
+            transition: .2s;
+        }
+        
+        .back-button:hover {
+            background: var(--green);
+            color: white;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: var(--green);
+            font-style: italic;
+        }
+        
+        @media (max-width: 680px) {
+            .calendar {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+            }
+            .door {
+                min-height: 145px;
+                padding-inline: 6px;
+            }
+            .section-heading h2 {
+                font-size: 30px;
+            }
+            .letter-page {
+                padding: 22px 12px;
+            }
+            .letter-card {
+                padding: 38px 27px;
+            }
+            .letter-body {
+                font-size: 16px;
+                line-height: 1.85;
+                overflow-wrap: anywhere;
+            }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="mainHeader">
+        <div class="eyebrow">December 1 — December 29, 2026</div>
+        <h1>28 Days of <span class="italic">You.</span></h1>
+        <p class="intro">
+            Twenty-eight little letters, each holding a reason why I'm grateful you're in my life. One for every day, until the day we get to celebrate you.
+        </p>
+    </header>
+
+    <main>
+        <section class="calendar-section" id="calendarSection">
+            <div class="section-heading">
+                <div class="eyebrow">A little advent calendar</div>
+                <h2>One day at a time.</h2>
+                <p>Every envelope holds something I want you to know. ♡</p>
+            </div>
+
+            <div class="calendar" id="calendar"></div>
+        </section>
+
+        <section id="letterPage" class="letter-page hidden">
+            <article class="letter-card">
+                <div class="letter-heart">♡ ✧ ♡</div>
+                <div class="eyebrow" id="letterEyebrow">A little note for you</div>
+                <h2 id="letterTitle"></h2>
+                <p class="letter-body" id="letterBody"></p>
+                <div class="letter-heart">— with love, ♡</div>
+                <button class="back-button" id="backButton">
+                    Back to your letters
+                </button>
+            </article>
+        </section>
+    </main>
+
+    <footer id="footer">
+        Every little word, a small way of finding you. With all my love, ♡
+    </footer>
+
+    <script>
+        // Austin's birthday: December 29, 2026.
+        // The letters unlock according to Austin's local date (America/Chicago).
+
+        const notes = [
+            [
+                "I'm glad you were born",
+                `Happy December, my love.
+
+I know this is technically the first letter, but I think it's only right to begin with the simplest thing: I'm so, so glad you were born.
+
+Somewhere in this enormous world, on a day that would eventually become important to me, you arrived. And even though I had no idea back then that our paths would cross, I'm grateful that they eventually did.
+
+I hope this little calendar reminds you, day after day, that your existence is something worth celebrating. Not just on your birthday, but on all the ordinary days in between.`
+            ],
+            [
+                "Your little details",
+                `I notice the little things about you, even the ones you think go unnoticed.
+
+The way you phrase certain things, the expressions you use, the little habits that are so unmistakably yours. I collect these details without even meaning to.
+
+I think that's one of the lovely things about getting to know someone: eventually, it's not only the big things you remember. It's all the tiny pieces that make them who they are.
+
+And I hope you never feel that you have to be extraordinary every second to be loved. The ordinary, everyday you is someone I adore, too.`
+            ],
+            [
+                "Your mind",
+                `I could listen to the way your mind works for hours.
+
+I love how you think, how you connect ideas, and how one question can lead us into an entirely different conversation. Sometimes I find myself smiling just because I'm imagining what you'll say next.
+
+I hope you never lose that curiosity. Keep learning, keep questioning, keep exploring the things that make your mind light up.
+
+There's something genuinely beautiful about the way you see the world, and I hope you always give yourself room to keep discovering it.`
+            ],
+            [
+                "Your sense of humour",
+                `You make me laugh in ways I wish I could bottle up and keep.
+
+I love that we can have a serious conversation and then suddenly say something completely ridiculous. Those little moments are some of my favourites.
+
+I hope this next year gives you countless reasons to laugh until your cheeks hurt. And when it doesn't, I hope you remember that you don't have to pretend to be okay with me.
+
+I want the silly moments, the quiet moments, and everything in between.`
+            ],
+            [
+                "Your determination",
+                `I admire how you keep going, even when things get difficult.
+
+I know that not every day is easy, and I know there are responsibilities and worries that people don't always see. But I notice the effort you put into the things that matter to you.
+
+I hope you remember that progress doesn't always look impressive from the outside. Sometimes it simply means getting up, trying again, and doing the best you can with what you have.
+
+I'm proud of you for that, even on the days when you don't feel particularly proud of yourself.`
+            ],
+            [
+                "Your voice",
+                `Hearing your voice makes even an ordinary day feel softer.
+
+There's something comforting about being able to hear you, even when we're miles apart. It makes the distance feel a little less like a wall and a little more like something we can patiently work through.
+
+I wish I could save all our conversations in a little box and open them whenever I miss you.
+
+Until then, I'll keep looking forward to the next time I get to hear you.`
+            ],
+            [
+                "Your curiosity",
+                `I love how you never stop asking questions and discovering things.
+
+I hope you never become someone who thinks they've learned enough. There's so much in this world worth exploring, and I love seeing you interested in something new.
+
+Keep following those random questions, those unexpected interests, and those little rabbit holes you find yourself falling into.
+
+You never know which one might lead you somewhere wonderful.`
+            ],
+            [
+                "Your gentleness",
+                `There is a softness in you that I hope you never feel you have to hide.
+
+The world can sometimes make gentleness seem like a weakness, but I don't believe that for a second. It takes strength to remain kind, to be considerate, and to treat people with care.
+
+I hope life is gentle with you, too. And on the days when it isn't, I hope you find people and places where you can finally let your guard down.
+
+You deserve that kind of peace.`
+            ],
+            [
+                "Your honesty",
+                `I love that we can make room for honest conversations, even the difficult ones.
+
+I think trust is built in those moments when we choose to be truthful, listen carefully, and try to understand each other instead of simply trying to win an argument.
+
+I hope we always protect that part of what we have.
+
+You can be honest with me, even when the conversation isn't easy. I'd rather understand the real you than be given a perfect version of you.`
+            ],
+            [
+                "Your laugh",
+                `If I could keep one sound close to me, it would be your laugh.
+
+I love knowing that somewhere in the middle of an ordinary day, something might make you laugh, and I get to be one of the people who hears it.
+
+I hope you laugh often this month. The uncontrollable kind, the unexpected kind, the kind that makes you forget what you were worried about for a little while.
+
+You deserve so many moments like that.`
+            ],
+            [
+                "Your patience",
+                `The way you try to understand before judging means more than you know.
+
+I know patience isn't always easy, especially when life is busy and your mind is already carrying a hundred things. So I notice the moments when you slow down, listen, and make room for someone else's perspective.
+
+I hope I can offer you that same patience in return.
+
+We are both still learning, and I think there's something lovely about choosing to grow with kindness.`
+            ],
+            [
+                "Your interests",
+                `I love discovering the little worlds hidden inside the things you enjoy.
+
+Every interest tells me another small thing about you: what catches your attention, what makes you curious, what you could talk about for ages.
+
+I don't need to understand every single thing immediately. Sometimes I just love listening to you explain it.
+
+I hope you always make time for the things that make you feel like yourself.`
+            ],
+            [
+                "Your courage",
+                `I admire the quiet courage it takes to show up and try again.
+
+Courage isn't always some grand, dramatic moment. Sometimes it's getting through a difficult day, having a conversation you've been avoiding, or admitting that you don't have everything figured out.
+
+I hope you give yourself credit for those moments, too.
+
+You don't have to be fearless to be brave, Austy.`
+            ],
+            [
+                "The way you listen",
+                `You make me feel heard, and that is one of the sweetest gifts.
+
+There's a difference between simply hearing words and genuinely wanting to understand the person saying them. I appreciate the moments when you make me feel that there's room for my thoughts, even the random ones.
+
+I hope I make you feel just as heard.
+
+I want us to keep learning how to listen to each other, not only when things are easy, but especially when they matter.`
+            ],
+            [
+                "Your thoughtful side",
+                `Your thoughtful little gestures have a way of staying with me.
+
+Sometimes it's not about doing something enormous. It's the small things that tell someone they crossed your mind.
+
+I remember those moments, probably more than you realise.
+
+And I hope you know that you don't have to constantly do something for me to appreciate you. I notice the person behind the gestures, and that's who matters to me.`
+            ],
+            [
+                "Your faith journey",
+                `I admire your search for truth and the care you give your faith.
+
+I know that questions of faith are not always simple, and I respect the sincerity it takes to keep searching, learning, and growing.
+
+I pray that God guides you, gives you wisdom, and fills your heart with peace.
+
+I hope we keep encouraging each other to grow closer to Him.`
+            ],
+            [
+                "Your resilience",
+                `Even on hard days, there is a strength in you I deeply admire.
+
+I hope you remember that you don't have to have everything figured out. You are allowed to rest, to take your time, and to start again.
+
+I hope this year brings you more peaceful days than difficult ones, and that you never forget how much good there is ahead of you.`
+            ],
+            [
+                "Your warmth",
+                `You have a way of making distance feel a little less far away.
+
+Even when we're on opposite sides of the world, little conversations with you can make an ordinary day feel special.
+
+I wish I could be there for all the little everyday moments, not just the big occasions.
+
+Until then, I'm sending you the warmest hug through this little screen.`
+            ],
+            [
+                "Your silly side",
+                `I love that we can be thoughtful one minute and completely ridiculous the next.
+
+I hope we never lose that. I want the serious conversations, the random theories, the terrible jokes, and all the laughter in between.
+
+Life is already serious enough sometimes. We should always leave room for a little silliness.`
+            ],
+            [
+                "The way you try",
+                `You never have to be perfect to be someone I am proud of.
+
+I notice the effort, even when things don't go exactly as planned. I hope you learn to be as patient with yourself as you are with the people you care about.
+
+You are allowed to make mistakes, learn, and try again.
+
+Please don't measure your worth by how productive you were today.`
+            ],
+            [
+                "Your perspective",
+                `You make me see familiar things from a whole new perspective.
+
+I love conversations that make me pause and think, and I love that there's always something new to discover about the way you see things.
+
+I hope we never run out of things to talk about.
+
+Although, knowing us, I doubt that's going to happen.`
+            ],
+            [
+                "Your kindness",
+                `The quiet kindness you show says so much about your heart.
+
+I hope you never underestimate the difference a small act of kindness can make in someone's day.
+
+And I hope you receive the same kindness you give to others.
+
+You deserve to be cared for, too.`
+            ],
+            [
+                "The comfort of us",
+                `Even a little moment with you can make a long day feel lighter.
+
+I don't think every meaningful moment has to be grand. Sometimes it's simply talking about our days, sharing something funny, or sitting together without needing to say much.
+
+I look forward to all the ordinary moments we haven't had yet.`
+            ],
+            [
+                "Your dreams",
+                `I hope you never stop making room for the things that make you come alive.
+
+I hope this new year brings you closer to the dreams you've been working towards, and gives you the courage to dream even bigger.
+
+And when the road gets difficult, I hope you remember that you don't have to figure everything out in one day.
+
+One step at a time, Austy.`
+            ],
+            [
+                "The real you",
+                `You never have to pretend with me; I want the wonderfully real you.
+
+Not just the confident version, not just the version that has everything under control, but the human being behind all of that.
+
+You can have quiet days, difficult days, and days when you don't feel like talking much.
+
+You are still you, and that's enough.`
+            ],
+            [
+                "Our conversations",
+                `Some of my favourite moments are simply the two of us talking.
+
+From meaningful conversations to the most random subjects imaginable, I love the little world we create whenever we talk.
+
+I hope we always stay curious about each other's thoughts and keep finding new things to share.
+
+I have a feeling we'll have plenty more conversations ahead of us.`
+            ],
+            [
+                "The way you make me smile",
+                `You leave little smiles with me long after our conversations end.
+
+Sometimes I'll remember something you said and catch myself smiling all over again.
+
+I hope I give you some of those moments, too.
+
+You deserve a year filled with reasons to smile, even the smallest and most unexpected ones.`
+            ],
+            [
+                "Just because you are you",
+                `I love getting to know you, and I cannot wait for all the little things still to discover.
+
+There is so much more to life than birthdays and calendars, and I hope we get to celebrate plenty of ordinary days together, too.
+
+Thank you for being you, Austin.
+
+Tomorrow is your day, and I hope it reminds you how precious your life is.
+
+With all my love,
+Phina ♡`
+            ]
+        ];
+
+        // TEST MODE: all doors are available while we're testing.
+        // Change this to false before publishing if you want date restrictions.
+        const TEST_MODE = false;
+
+        const calendar = document.getElementById("calendar");
+        const calendarSection = document.getElementById("calendarSection");
+        const letterPage = document.getElementById("letterPage");
+        const mainHeader = document.getElementById("mainHeader");
+        const footer = document.getElementById("footer");
+
+        function isDayUnlocked(day) {
+            const parts = new Intl.DateTimeFormat("en-US", {
+                timeZone: "America/Chicago",
+                year: "numeric",
+                month: "numeric",
+                day: "numeric"
+            }).formatToParts(new Date());
+
+            const date = {};
+            parts.forEach(part => {
+                if (part.type !== "literal") {
+                    date[part.type] = Number(part.value);
+                }
+            });
+
+            if (date.year > 2026) return true;
+            if (date.year < 2026) return false;
+
+            return date.month === 12 && date.day >= day;
+        }
+
+        function createDoor(day, title) {
+            const door = document.createElement("button");
+
+            door.className = "door";
+            door.type = "button";
+
+            if (isDayUnlocked(day)) {
+                door.classList.add("opened");
+            } else {
+                door.disabled = true;
+            }
+
+            door.innerHTML = `
+                <span class="number">DECEMBER ${String(day).padStart(2, "0")}</span>
+                <span class="envelope" aria-hidden="true">
+                    <span class="seal">♡</span>
+                </span>
+                <span class="label">${title}</span>
+            `;
+
+            door.addEventListener("click", () => {
+                if (!isDayUnlocked(day)) return;
+
+                const note = notes[day - 1];
+                openLetter(day, note[0], note[1]);
+            });
+
+            calendar.appendChild(door);
+        }
+
+        function renderCalendar() {
+            calendar.innerHTML = "";
+
+            notes.forEach((note, index) => {
+                createDoor(index + 1, note[0]);
+            });
+
+            const birthdayDoor = document.createElement("button");
+
+            birthdayDoor.className = "door final-door";
+            birthdayDoor.disabled = !isDayUnlocked(29);
+            birthdayDoor.type = "button";
+
+            birthdayDoor.innerHTML = `
+                <span class="symbol">✉</span>
+                <span>
+                    <span class="number">DECEMBER 29</span>
+                    <span class="label">Open your birthday surprise ♡</span>
+                </span>
+            `;
+
+            birthdayDoor.addEventListener("click", () => {
+                window.location.href = "birthday.html";
+            });
+
+            calendar.appendChild(birthdayDoor);
+        }
+
+        function openLetter(day, title, message) {
+            calendarSection.classList.add("hidden");
+            mainHeader.classList.add("hidden");
+            footer.classList.add("hidden");
+
+            document.getElementById("letterEyebrow").textContent =
+                `DECEMBER ${String(day).padStart(2, "0")} · JUST FOR YOU`;
+
+            document.getElementById("letterTitle").textContent = title;
+            document.getElementById("letterBody").textContent = message;
+
+            letterPage.classList.remove("hidden");
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+        function backToCalendar() {
+            letterPage.classList.add("hidden");
+            calendarSection.classList.remove("hidden");
+            mainHeader.classList.remove("hidden");
+            footer.classList.remove("hidden");
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+        document.getElementById("backButton").addEventListener(
+            "click",
+            backToCalendar
+        );
+
+        renderCalendar();
+    </script>
+</body>
+
+</html>

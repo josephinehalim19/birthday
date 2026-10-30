@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Season, Austy ♡</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: Georgia, "Times New Roman", serif;
+            color: #26372d;
+            background: linear-gradient(135deg, #f4f2e8, #e3e9dd, #f8f5e9);
+        }
+        
+        .page {
+            min-height: 100vh;
+            padding: 55px 20px 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .card {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 590px;
+            padding: 45px 30px;
+            text-align: center;
+            background: #fffdf7;
+            border: 1px solid #d5ddcf;
+            box-shadow: 0 20px 60px rgba(35, 71, 53, .12);
+            animation: fadeIn 1s ease both;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .eyebrow {
+            color: #38566a;
+            font: 600 10px Arial, sans-serif;
+            letter-spacing: .22em;
+            line-height: 1.8;
+        }
+        
+        h1 {
+            margin: 20px 0 12px;
+            font-size: clamp(36px, 8vw, 52px);
+            font-weight: normal;
+            line-height: 1.2;
+        }
+        
+        .italic {
+            color: #55745c;
+            font-style: italic;
+        }
+        
+        .intro {
+            margin: 0 auto 28px;
+            color: #718071;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+        
+        .photo-frame {
+            position: relative;
+            width: min(100%, 310px);
+            margin: 0 auto 30px;
+            padding: 10px;
+            background: #f1eee3;
+            border: 1px solid #d5ddcf;
+            box-shadow: 0 10px 25px rgba(35, 71, 53, .12);
+            transform: rotate(-1deg);
+        }
+        
+        .photo-frame img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 360px;
+            object-fit: cover;
+        }
+        
+        .party-hat {
+            position: absolute;
+            top: -28px;
+            right: 16px;
+            z-index: 3;
+            font-size: 52px;
+            transform: rotate(15deg);
+            filter: drop-shadow(2px 3px 2px rgba(0, 0, 0, .15));
+        }
+        
+        .photo-caption {
+            margin: 12px 0 0;
+            color: #718071;
+            font-size: 13px;
+            font-style: italic;
+        }
+        
+        .countdown-title {
+            margin: 30px 0 18px;
+            color: #38566a;
+            font-size: 13px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+        
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 440px;
+            margin: 0 auto;
+        }
+        
+        .time-box {
+            padding: 16px 5px;
+            background: #e8eef0;
+            border: 1px solid #c7d4d8;
+        }
+        
+        .time-number {
+            display: block;
+            color: #38566a;
+            font-size: clamp(25px, 6vw, 34px);
+            line-height: 1.2;
+        }
+        
+        .time-label {
+            display: block;
+            margin-top: 7px;
+            color: #718b9a;
+            font: 600 9px Arial, sans-serif;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+        
+        .closing {
+            margin: 25px auto 0;
+            color: #506052;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        
+        .advent-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 28px;
+            background: #38566a;
+            color: #fffdf7;
+            border: 1px solid #38566a;
+            text-decoration: none;
+            font: 15px Georgia, serif;
+            transition: .3s ease;
+        }
+        
+        .advent-link:hover {
+            background: #55745c;
+            border-color: #55745c;
+            transform: translateY(-3px);
+        }
+        
+        .advent-caption {
+            margin-top: 12px;
+            color: #718071;
+            font-size: 13px;
+            font-style: italic;
+        }
+        /* Floating birthday balloons */
+        
+        .balloon {
+            position: fixed;
+            bottom: -100px;
+            z-index: 1;
+            pointer-events: none;
+            font-size: 36px;
+            animation: floatUp linear forwards;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(-8deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            85% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-115vh) rotate(15deg);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 430px) {
+            .card {
+                padding: 38px 18px;
+            }
+            .countdown {
+                gap: 6px;
+            }
+            .time-box {
+                padding: 13px 3px;
+            }
+            .time-label {
+                font-size: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="page">
+        <section class="card">
+
+            <div class="eyebrow">
+                A VERY SPECIAL DAY IS APPROACHING
+            </div>
+
+            <h1>
+                Happy Birthday
+                <span class="italic">Aussie</span>
+            </h1>
+
+            <p class="intro">
+                Someone very special came into this world.<br>And I happen to be lucky enough to know him ♡
+            </p>
+
+            <div class="photo-frame">
+
+                <img src="C:\Users\DELL\OneDrive\Desktop\29.12\images\austin-birthday.png" alt="Austin as a little boy">
+
+                <p class="photo-caption">
+                    The birthday boy, in his very early years
+                </p>
+            </div>
+
+            <h2 class="countdown-title">
+                Until your next trip around the sun
+            </h2>
+
+            <div class="countdown">
+                <div class="time-box">
+                    <span class="time-number" id="days">00</span>
+                    <span class="time-label">Days</span>
+                </div>
+
+                <div class="time-box">
+                    <span class="time-number" id="hours">00</span>
+                    <span class="time-label">Hours</span>
+                </div>
+
+                <div class="time-box">
+                    <span class="time-number" id="minutes">00</span>
+                    <span class="time-label">Minutes</span>
+                </div>
+
+                <div class="time-box">
+                    <span class="time-number" id="seconds">00</span>
+                    <span class="time-label">Seconds</span>
+                </div>
+            </div>
+
+            <p class="closing" id="countdownMessage">
+                Counting down to December 29th ♡
+            </p>
+
+            <a href="advent.html" class="advent-link">
+                Open your little surprise!
+            </a>
+
+        </section>
+    </main>
+
+    <script>
+        // Birthday: December 29, 2026 at midnight in Austin, Texas.
+        // Austin is on CST (UTC-6) on this date.
+        const birthday = new Date("2026-12-29T06:00:00Z").getTime();
+
+        function updateCountdown() {
+            const now = Date.now();
+            const difference = birthday - now;
+
+            const message = document.getElementById("countdownMessage");
+
+            if (difference <= 0) {
+                document.getElementById("days").textContent = "00";
+                document.getElementById("hours").textContent = "00";
+                document.getElementById("minutes").textContent = "00";
+                document.getElementById("seconds").textContent = "00";
+                message.textContent = "It's your day, birthday boy! Happy Birthday, my love. ♡";
+                return;
+            }
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((difference / (1000 * 60)) % 60);
+            const seconds = Math.floor((difference / 1000) % 60);
+
+            document.getElementById("days").textContent = String(days).padStart(2, "0");
+            document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+            document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+            document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Release floating balloons when the page opens.
+        function releaseBalloons() {
+            const balloonTypes = ["🎈", "🎈", "🎈", "🎈", "💙"];
+
+            for (let i = 0; i < 26; i++) {
+                const balloon = document.createElement("div");
+                balloon.className = "balloon";
+                balloon.textContent = balloonTypes[i % balloonTypes.length];
+
+                balloon.style.left = Math.random() * 100 + "vw";
+                balloon.style.animationDuration = (5 + Math.random() * 5) + "s";
+                balloon.style.animationDelay = (Math.random() * 2.5) + "s";
+                balloon.style.fontSize = (25 + Math.random() * 23) + "px";
+
+                document.body.appendChild(balloon);
+
+                balloon.addEventListener("animationend", () => {
+                    balloon.remove();
+                });
+            }
+        }
+
+        window.addEventListener("load", releaseBalloons);
+    </script>
+
+</body>
+
+</html>

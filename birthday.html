@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Austy ♡</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+         :root {
+            --forest: #102b25;
+            --deep: #091a16;
+            --cream: #f8edcf;
+            --paper: #f7edda;
+            --gold: #d7b66e;
+            --ink: #263c34;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            min-height: 100vh;
+            background: radial-gradient(ellipse at 50% 0%, #315344 0%, transparent 50%), linear-gradient(150deg, #091a16, #17382e 55%, #0b211c);
+            color: var(--cream);
+            font-family: 'Cormorant Garamond', serif;
+            overflow-x: hidden;
+        }
+        
+        .stars {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .star {
+            position: absolute;
+            color: #f5d994;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+        
+        @keyframes twinkle {
+            0%,
+            100% {
+                opacity: .2;
+                transform: scale(.8);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.25);
+            }
+        }
+        
+        .moon {
+            position: fixed;
+            top: 65px;
+            right: 8%;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: #f5e7c0;
+            box-shadow: 0 0 45px #e9d49c77;
+            z-index: 0;
+        }
+        
+        .moon::after {
+            content: "";
+            position: absolute;
+            top: -8px;
+            left: -14px;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: #17382e;
+        }
+        
+        main {
+            position: relative;
+            z-index: 1;
+            width: min(1000px, 92%);
+            margin: auto;
+            padding: 65px 0 75px;
+            text-align: center;
+        }
+        /* OPENING */
+        
+        .eyebrow {
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: .85rem;
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-weight: 400;
+            font-size: clamp(3.5rem, 9vw, 6rem);
+            line-height: 1.15;
+            color: var(--cream);
+        }
+        
+        .subtitle {
+            max-width: 600px;
+            margin: 15px auto 25px;
+            color: #e0e3d6;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            line-height: 1.9;
+        }
+        /* AUSTIN PHOTO */
+        
+        .hero {
+            position: relative;
+            width: min(720px, 100%);
+            min-height: 410px;
+            margin: 35px auto 25px;
+            border: 1px solid #c8a866;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #132b24;
+            box-shadow: 0 15px 50px #0008;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 35%;
+            opacity: .75;
+        }
+        
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient( 90deg, #091a16ed 0%, #091a1699 42%, #091a1630 100%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 40px;
+            text-align: left;
+        }
+        
+        .hero-content h1 {
+            max-width: 430px;
+            color: #f5d99c;
+            font-size: clamp(3.3rem, 8vw, 5.5rem);
+        }
+        
+        .hero-content p {
+            max-width: 350px;
+            font-size: 1.25rem;
+            line-height: 1.7;
+            color: #f5edda;
+        }
+        
+        .open-button {
+            margin-top: 25px;
+            padding: 14px 30px;
+            border: 1px solid var(--gold);
+            border-radius: 40px;
+            background: linear-gradient(135deg, #ead8a7, #c3a263);
+            color: var(--deep);
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: .3s;
+            box-shadow: 0 5px 25px #0005;
+        }
+        
+        .open-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px #0007;
+        }
+        
+        .tiny-note {
+            color: #d6d0b9;
+            font-style: italic;
+            margin-top: 15px;
+            font-size: 1.15rem;
+        }
+        /* REVEAL */
+        
+        #reveal {
+            display: none;
+            margin-top: 55px;
+        }
+        
+        #reveal.visible {
+            display: block;
+            animation: appear 1.3s ease forwards;
+        }
+        
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .divider {
+            color: var(--gold);
+            letter-spacing: 8px;
+            margin: 35px 0;
+            font-size: 1.4rem;
+        }
+        /* LETTERS */
+        
+        .letter {
+            position: relative;
+            max-width: 760px;
+            margin: auto;
+            padding: clamp(28px, 6vw, 60px);
+            background: radial-gradient(ellipse at top left, #fff9, transparent 50%), var(--paper);
+            color: var(--ink);
+            border: 1px solid #d5bd88;
+            box-shadow: 0 15px 50px #0006;
+            text-align: left;
+        }
+        
+        .letter::before {
+            content: "✧";
+            position: absolute;
+            top: 17px;
+            right: 22px;
+            color: #ad9159;
+            font-size: 1.8rem;
+        }
+        
+        .letter-label {
+            text-align: center;
+            color: #8a7449;
+            font-family: 'Playfair Display', serif;
+            font-size: .78rem;
+            letter-spacing: 3px;
+            margin-bottom: 28px;
+        }
+        
+        .letter h2 {
+            font-family: 'Great Vibes', cursive;
+            text-align: center;
+            font-size: clamp(2.8rem, 7vw, 4rem);
+            font-weight: 400;
+            color: #34574a;
+            margin-bottom: 28px;
+        }
+        
+        .letter-content {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            line-height: 1.9;
+            overflow-wrap: anywhere;
+        }
+        
+        .letter-content p {
+            margin-bottom: 20px;
+        }
+        
+        .prayer-letter {
+            max-width: 650px;
+            background: radial-gradient(ellipse at top left, #fff9, transparent 50%), #f3ecd9;
+        }
+        
+        .prayer-letter .letter-content {
+            font-style: italic;
+            line-height: 2;
+        }
+        
+        .amen {
+            text-align: center;
+            color: #607a70;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-top: 25px;
+        }
+        
+        .signature {
+            text-align: right;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.6rem;
+            color: #52766a;
+            margin-top: 30px;
+        }
+        /* SONG */
+        
+        .song-card {
+            max-width: 650px;
+            margin: 40px auto;
+            padding: 35px 20px;
+            border: 1px solid var(--gold);
+            border-radius: 16px;
+            background: linear-gradient(145deg, #1d4036, #0d251e);
+            box-shadow: 0 12px 35px #0006;
+        }
+        
+        .song-label {
+            color: var(--gold);
+            letter-spacing: 3px;
+            font-size: .8rem;
+            text-transform: uppercase;
+        }
+        
+        .song-card h3 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            font-weight: 400;
+            color: #f4d99d;
+            margin: 10px 0 0;
+        }
+        
+        .artist {
+            color: #e0e0d1;
+            font-size: 1.1rem;
+            margin-bottom: 22px;
+        }
+        
+        .qr-frame {
+            display: inline-block;
+            padding: 12px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 5px 20px #0006;
+        }
+        
+        .qr-frame img {
+            display: block;
+            width: 190px;
+            height: 190px;
+            object-fit: contain;
+        }
+        
+        .scan-note {
+            color: #e0e0d1;
+            font-style: italic;
+            margin-top: 17px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        /* ENDING */
+        
+        .ending {
+            max-width: 760px;
+            margin: 45px auto 10px;
+            padding: 35px 25px;
+            background: linear-gradient(135deg, #f6e9ca, #e7d4ad);
+            border: 1px solid #d4b775;
+            color: var(--ink);
+            box-shadow: 0 12px 35px #0005;
+        }
+        
+        .big-wish {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3rem, 8vw, 5rem);
+            color: #34574a;
+            margin-bottom: 12px;
+        }
+        
+        .ending p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        
+        .heart {
+            color: #a88a4d;
+            font-size: 1.7rem;
+            margin-top: 20px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 35px;
+            color: var(--cream);
+            text-decoration: none;
+            border-bottom: 1px solid #d7b66e;
+            padding-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .back-link:hover {
+            color: var(--gold);
+        }
+        /* MOBILE */
+        
+        @media (max-width: 600px) {
+            main {
+                padding-top: 65px;
+            }
+            .moon {
+                width: 42px;
+                height: 42px;
+                top: 25px;
+            }
+            .moon::after {
+                width: 42px;
+                height: 42px;
+            }
+            .hero {
+                min-height: 480px;
+                align-items: flex-end;
+            }
+            .hero img {
+                object-position: center 25%;
+                opacity: .65;
+            }
+            .hero::after {
+                background: linear-gradient( 0deg, #091a16f5 0%, #091a1688 55%, transparent 100%);
+            }
+            .hero-content {
+                padding: 25px;
+                text-align: center;
+            }
+            .hero-content h1 {
+                margin: auto;
+            }
+            .hero-content p {
+                margin: 10px auto;
+            }
+            .letter {
+                padding: 30px 23px;
+            }
+            .qr-frame img {
+                width: 165px;
+                height: 165px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="stars" id="stars"></div>
+    <div class="moon"></div>
+
+    <main>
+
+        <!-- OPENING SCREEN -->
+
+        <section id="opening">
+
+            <div class="eyebrow">
+                A little birthday fairytale
+            </div>
+
+            <div class="hero">
+
+                <img src="images/austin.png" alt="Austin, the birthday boy">
+
+                <div class="hero-content">
+
+                    <div class="eyebrow">
+                        December 29
+                    </div>
+
+                    <h1>Once Upon a Birthday...</h1>
+
+                    <p>
+                        Somewhere between the stars and the pages of a storybook, there was a day that brought someone wonderful into this world. And today, that someone is you.
+                    </p>
+
+                </div>
+            </div>
+
+            <button class="open-button" onclick="openSurprise()">
+      Open your birthday surprise ✧
+    </button>
+
+            <p class="tiny-note">
+                A little something made just for you, Austy.
+            </p>
+
+        </section>
+
+
+        <!-- BIRTHDAY REVEAL -->
+
+        <section id="reveal">
+
+            <div class="eyebrow">
+                A special chapter · December 29
+            </div>
+
+            <h1>For My Austin</h1>
+
+            <p class="subtitle">
+                If this were a fairytale, this would be the page where the whole world pauses to celebrate you.
+            </p>
+
+            <div class="divider">✧ ❦ ✧</div>
+
+
+            <!-- PRAYER -->
+
+            <article class="letter prayer-letter">
+
+                <div class="letter-label">
+                    A LITTLE PRAYER FOR YOU
+                </div>
+
+                <h2>Dear Lord,</h2>
+
+                <div class="letter-content">
+
+                    <p>
+                        Today, I bring someone very dear to my heart before You.
+                    </p>
+
+                    <p>
+                        Thank You for the day You brought him into this world, for the life You have given him, and for every little thing that makes him who he is. Please watch over him, especially in the moments when I cannot be there beside him. Be his comfort when life feels
+                        heavy, his strength when he feels tired, and his light whenever the road ahead seems uncertain.
+                    </p>
+
+                    <p>
+                        Lord, I pray that this new year of his life brings him closer to You, closer to the person he hopes to become, and closer to the beautiful things You have prepared for him. Give him a peaceful heart, a healthy body, a mind free from unnecessary worries,
+                        and the courage to keep pursuing the dreams You have placed within him.
+                    </p>
+
+                    <p>
+                        Protect his heart, his faith, his family, and everything he holds dear. Remind him, especially on the days he forgets, that he is never alone and that Your love has never left him.
+                    </p>
+
+                    <p>
+                        And if I may ask for one more thing, Lord, please let me be a blessing in his life. Teach me how to love him with patience, gentleness, honesty, and grace. Help us grow in a way that brings us both closer to You. May whatever future You have written for
+                        us be filled with Your presence, and may we never build something together that leaves You out of it.
+                    </p>
+
+                    <p>
+                        Thank You for his life, Lord. And thank You for letting our paths cross.
+                    </p>
+
+                    <div class="amen">Amen.</div>
+
+                </div>
+            </article>
+
+
+            <div class="divider">✧ ❦ ✧</div>
+
+
+            <!-- MAIN BIRTHDAY LETTER -->
+
+            <article class="letter">
+
+                <div class="letter-label">
+                    A LETTER FOR THE BIRTHDAY BOY
+                </div>
+
+                <h2>My Dearest Austy,</h2>
+
+                <div class="letter-content">
+
+                    <p>Happy birthday, my love. ♡</p>
+
+                    <p>
+                        I have been thinking about what to write to you for this day for quite some time, and I kept finding myself at a loss for words. Not because I have nothing to say, but because somehow, no matter how many words I put together, they never seem quite enough
+                        to explain what you mean to me.
+                    </p>
+
+                    <p>
+                        I wish I could be there right now. I wish I could wake you up with a kiss on your forehead, hold your face between my hands, look into your eyes, and tell you all of this without having a screen between us. I wish I could see your smile when you realize
+                        how much thought I put into making this day special for you. And most of all, I wish I could hug you for a little longer than necessary, just because I can.
+                    </p>
+
+                    <p>
+                        But until I get to do those things, I hope these words make their way to you and remind you that there is someone on the other side of the world who is incredibly, ridiculously, hopelessly happy that you were born.
+                    </p>
+
+                    <p>Austin, I love you.</p>
+
+                    <p>
+                        I love the person you are when you're being serious, and the person you become when you're being absolutely ridiculous. I love listening to you explain something you're interested in, even when I have to ask you to explain it three more times. I love
+                        your curiosity, your humour, your little habits, the way your mind works, and all those tiny details that might seem ordinary to you but somehow have become some of my favourite things.
+                    </p>
+
+                    <p>
+                        I love the conversations that last longer than we planned, the unexpected things that make us laugh, the quiet moments when we don't really need to say much, and even the silly little disagreements that end up making me smile later. I love getting to
+                        discover another side of you every time we talk. And I hope you never feel that you have to hide any part of yourself from me. You don't have to be impressive every day. You don't have to have everything figured out. You can be
+                        tired, confused, excited, quiet, talkative, silly, or completely lost in your own thoughts. I want to know you in all those versions, too.
+                    </p>
+
+                    <p>
+                        I don't think you realize how often the smallest things remind me of you. Sometimes I hear something and immediately think, "I need to tell Austin about this." Sometimes I see something funny and can already imagine your reaction. Sometimes I catch myself
+                        smiling at a memory of one of our conversations. You've somehow become part of the way I experience my ordinary days, and I think that's one of the sweetest things about loving someone.
+                    </p>
+
+                    <p>
+                        And I want you to know something: I don't just love the idea of you, or the idea of having someone to call mine. I love getting to know the actual person behind the messages, the voice, the jokes, and the stories. I want to keep discovering you, even
+                        years from now, when there are still little things about you I haven't learned.
+                    </p>
+
+                    <p>
+                        I cannot promise you a life in which nothing ever goes wrong. I cannot promise that we'll never disagree, misunderstand each other, or have days when everything feels a little harder than usual. But I can promise that I will always want us to find our
+                        way back to understanding each other. I promise to listen, even when a conversation is difficult. To be honest, even when honesty requires courage. To apologize when I am wrong, and to make room for your feelings rather than expecting
+                        you to simply get over them.
+                    </p>
+
+                    <p>
+                        I promise to celebrate your victories, even the ones that seem small to everyone else. I want to hear about the things you're proud of, the things you're working towards, the ideas that keep you awake, and the dreams you haven't told many people about
+                        yet. I want to be the person who reminds you of how far you've come when you forget to give yourself credit.
+                    </p>
+
+                    <p>
+                        I promise to be gentle with the parts of you that are still growing. I don't expect perfection from you, my love. I don't need you to have all the answers. I want us to grow, separately and together, without making either of us feel that we have to stop
+                        being ourselves to be loved.
+                    </p>
+
+                    <p>
+                        And I promise that I will keep praying for you. Not only when things are difficult, but on ordinary mornings, before important days, when you have something exciting ahead of you, and sometimes for no reason other than the fact that I love you and want
+                        God's goodness to surround your life. I hope we always remember that love is not only something we feel; it is something we choose to practice, something we nurture, and something we bring before God.
+                    </p>
+
+                    <p>
+                        I have so many little dreams tucked away in my heart. I dream of the day when distance is no longer something we have to calculate around. Of ordinary mornings together, making breakfast, stealing kisses while one of us is trying to get something done,
+                        and arguing playfully about the most insignificant things. I dream of grocery shopping together, getting lost somewhere because we took the wrong turn, having long conversations before falling asleep, and making a home that feels
+                        peaceful to come back to.
+                    </p>
+
+                    <p>
+                        I dream of praying together, going to church together, growing in faith together, and building a life in which Christ is never just an afterthought. I dream of a home filled with warmth, laughter, little traditions, and so much love that even the most
+                        ordinary days feel special.
+                    </p>
+
+                    <p>
+                        And I know those things are still dreams for now. We have time, and we have growing to do, and I don't want to rush the beautiful things just because I cannot wait for them. I want us to build something worth waiting for, one honest conversation, one
+                        prayer, one decision, and one little moment at a time.
+                    </p>
+
+                    <p>
+                        If life allows me to stand beside you through all those chapters, I hope you know that I won't take the privilege lightly.
+                    </p>
+
+                    <p>
+                        I want to know the older you, too. The one who will have new stories, new interests, different dreams, a few more grey hairs, and probably the exact same terrible jokes. I want to look at you years from now and still find new reasons to fall in love with
+                        you. I want us to look back at the people we were when we first met and smile at how much we've grown.
+                    </p>
+
+                    <p>
+                        But for now, I want you to enjoy being twenty-something, to make memories, to explore the world, to learn, to laugh until your stomach hurts, and to give yourself permission to be happy. Please don't be so hard on yourself. You are allowed to rest. You
+                        are allowed to change your mind. You are allowed to take your time. And you are allowed to be proud of the person you are becoming.
+                    </p>
+
+                    <p>
+                        I hope this year is kind to you, Austy. I hope it surprises you in the loveliest ways. I hope you get opportunities that make your eyes light up, moments that remind you why you started, and people who make you feel appreciated. I hope you experience
+                        the kind of peace that doesn't depend on everything going perfectly. And whenever life gets overwhelming, I hope you remember that you are worthy of love even when you aren't accomplishing anything, fixing anything, or being strong
+                        for anyone.
+                    </p>
+
+                    <p>
+                        You don't have to earn my affection by having a perfect day. You don't have to be at your best to deserve tenderness. I love you on the ordinary days, too.
+                    </p>
+
+                    <p>
+                        Thank you for letting me into your little world. Thank you for the laughter, the conversations, the patience, and the opportunity to know you more. Thank you for being someone I can look forward to talking to, someone whose happiness genuinely matters
+                        to me, and someone I get to celebrate today.
+                    </p>
+
+                    <p>
+                        If I could give you one thing for your birthday, it wouldn't be something wrapped in pretty paper. It would be the ability to see yourself, even for a moment, through my eyes. Maybe then you'd understand why I find so many little things about you worth
+                        loving, why your existence makes me smile, and why I feel so lucky that, out of all the people in this enormous world, I got to meet you.
+                    </p>
+
+                    <p>
+                        So here's to another year of your life, my favourite human. To everything you've survived, everything you've learned, everything you're yet to discover, and all the beautiful versions of yourself you haven't met yet.
+                    </p>
+
+                    <p><strong>Happy birthday, Austin.</strong></p>
+
+                    <p>
+                        I love you more than I could ever fit into one letter, more than these twenty-eight little notes could possibly explain, and more than I think you'll ever fully understand from a screen.
+                    </p>
+
+                    <p>
+                        And if I get to, I'll spend many more birthdays reminding you.
+                    </p>
+
+                    <p>
+                        <strong>
+            All my love, today and in all the little tomorrows,
+          </strong>
+                    </p>
+
+                </div>
+
+                <p class="signature">Your Phina ♡</p>
+
+            </article>
+
+
+            <div class="divider">✧ ❦ ✧</div>
+
+
+            <!-- LOVE STORY QR -->
+
+            <section class="song-card">
+
+                <div class="song-label">
+                    A song for my favorite story
+                </div>
+
+                <h3>Love Story</h3>
+
+                <p class="artist">Taylor Swift</p>
+
+                <div class="qr-frame">
+                    <img src="images/qrcode.png" alt="Scan to listen to Love Story">
+                </div>
+
+                <p class="scan-note">
+                    A little soundtrack for our own kind of fairytale. ♡
+                    <br> Scan me with your phone camera.
+                </p>
+
+            </section>
+
+
+            <!-- FINAL BIRTHDAY WISH -->
+
+            <section class="ending">
+
+                <div class="big-wish">
+                    Happy Birthday, Austy!
+                </div>
+
+                <p>
+                    The world became a little more interesting on the day you were born. I hope you never forget how loved, appreciated, and wonderfully one-of-a-kind you are.
+                </p>
+
+                <div class="heart">♡ ✧ ♡</div>
+
+            </section>
+
+            <a class="back-link" href="advent.html">
+      ✧ Back to your little collection of letters ✧
+    </a>
+
+        </section>
+
+    </main>
+
+
+    <script>
+        // OPEN THE BIRTHDAY SURPRISE
+
+        function openSurprise() {
+
+            document.getElementById("opening").style.display = "none";
+
+            const reveal = document.getElementById("reveal");
+
+            reveal.classList.add("visible");
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        // CREATE MAGICAL STARS
+
+        const starsContainer = document.getElementById("stars");
+
+        const symbols = ["✦", "✧", "·", "⋆"];
+
+        for (let i = 0; i < 75; i++) {
+
+            const star = document.createElement("span");
+
+            star.className = "star";
+
+            star.textContent = symbols[
+                Math.floor(Math.random() * symbols.length)
+            ];
+
+            star.style.left = Math.random() * 100 + "%";
+            star.style.top = Math.random() * 100 + "%";
+            star.style.fontSize = (8 + Math.random() * 13) + "px";
+            star.style.animationDelay = Math.random() * 4 + "s";
+            star.style.animationDuration = (2 + Math.random() * 4) + "s";
+
+            starsContainer.appendChild(star);
+
+        }
+    </script>
+
+</body>
+
+</html>
